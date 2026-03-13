@@ -344,10 +344,10 @@ uuid: {UUID}"""
         return
     
     # Generate private.key
-    exec_cmd(f'openssl ecparam -genkey -name prime256v1 -out "{FILE_PATH}private.key"')
+    exec_cmd(f'openssl ecparam -genkey -name prime256v1 -out "{FILE_PATH}/private.key"')
     
     # Generate cert.pem
-    exec_cmd(f'openssl req -new -x509 -days 3650 -key "{FILE_PATH}private.key" -out "{FILE_PATH}cert.pem" -subj "/CN=bing.com"')
+    exec_cmd(f'openssl req -new -x509 -days 3650 -key "{FILE_PATH}/private.key" -out "{FILE_PATH}/cert.pem" -subj "/CN=bing.com"')
     
     # Generate configuration file
     config = {
@@ -472,8 +472,8 @@ uuid: {UUID}"""
             "tls": {
                 "enabled": True,
                 "alpn": ["h3"],
-                "certificate_path": f"{FILE_PATH}cert.pem",
-                "key_path": f"{FILE_PATH}private.key"
+                "certificate_path": f"{FILE_PATH}/cert.pem",
+                "key_path": f"{FILE_PATH}/private.key"
             }
         }
         config["inbounds"].append(hysteria_config)
@@ -493,8 +493,8 @@ uuid: {UUID}"""
             "tls": {
                 "enabled": True,
                 "alpn": ["h3"],
-                "certificate_path": f"{FILE_PATH}cert.pem",
-                "key_path": f"{FILE_PATH}private.key"
+                "certificate_path": f"{FILE_PATH}/cert.pem",
+                "key_path": f"{FILE_PATH}/private.key"
             }
         }
         config["inbounds"].append(tuic_config)
@@ -527,8 +527,8 @@ uuid: {UUID}"""
             ],
             "tls": {
                 "enabled": True,
-                "certificate_path": f"{FILE_PATH}cert.pem",
-                "key_path": f"{FILE_PATH}private.key"
+                "certificate_path": f"{FILE_PATH}/cert.pem",
+                "key_path": f"{FILE_PATH}/private.key"
             }
         }
         config["inbounds"].append(anytls_config)
