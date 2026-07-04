@@ -486,7 +486,8 @@ uuid: {UUID}"""
             "listen_port": TUIC_PORT,
             "users": [
                 {
-                    "uuid": UUID
+                    "uuid": UUID,
+                    "password": UUID
                 }
             ],
             "congestion_control": "bbr",
@@ -784,7 +785,7 @@ async def generate_links(argo_domain):
 
     # Generate other nodes based on port
     if TUIC_PORT is not None:
-        tuic_node = f"\ntuic://{UUID}:@{SERVER_IP}:{TUIC_PORT}?sni=www.bing.com&congestion_control=bbr&udp_relay_mode=native&alpn=h3&allow_insecure=1#{Nodename}"
+        tuic_node = f"\ntuic://{UUID}:{UUID}@{SERVER_IP}:{TUIC_PORT}?sni=www.bing.com&congestion_control=bbr&udp_relay_mode=native&alpn=h3&allow_insecure=1#{Nodename}"
         if sub_txt:
             sub_txt += tuic_node
         else:
