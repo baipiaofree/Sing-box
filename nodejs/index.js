@@ -489,7 +489,7 @@ eQ6OFb9LbLYL9f+sAiAffoMbi4y/0YUSlTtz7as9S8/lciBF5VCUoVIKS+vX2g==
         ],
         "rules": [
           {
-            "rule_set": ["openai", "netflix"],
+            "rule_set": ["netflix"],
             "outbound": "wireguard-out"
           }
         ],
@@ -566,7 +566,8 @@ eQ6OFb9LbLYL9f+sAiAffoMbi4y/0YUSlTtz7as9S8/lciBF5VCUoVIKS+vX2g==
           "listen_port": parseInt(TUIC_PORT),
           "users": [
             {
-              "uuid": UUID
+              "uuid": UUID,
+              "password": UUID
             }
           ],
           "congestion_control": "bbr",
@@ -984,7 +985,7 @@ async function generateLinks(argoDomain) {
 
       // TUIC_PORT是有效端口号时生成tuic节点
       if (isValidPort(TUIC_PORT)) {
-        const tuicNode = `\ntuic://${UUID}:@${SERVER_IP}:${TUIC_PORT}?sni=www.bing.com&congestion_control=bbr&udp_relay_mode=native&alpn=h3&allow_insecure=1#${nodeName}`;
+        const tuicNode = `\ntuic://${UUID}:${UUID}@${SERVER_IP}:${TUIC_PORT}?sni=www.bing.com&congestion_control=bbr&udp_relay_mode=native&alpn=h3&allow_insecure=1#${nodeName}`;
         subTxt += tuicNode;
       }
 
